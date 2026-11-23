@@ -1,0 +1,180 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+html {
+    background: var(--background);
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    font-family: "Inter", sans-serif;
+    color: var(--text-primary);
+}
+
+
+/* =========================================
+   APP
+========================================= */
+
+.app {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--background);
+}
+
+/* =========================================
+   TERMINAL OVERLAY
+========================================= */
+
+.terminal {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(5, 6, 8, 0.45);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    z-index: 1999;
+}
+
+
+/* =========================================
+   SCROLL CONTAINER
+========================================= */
+
+.page-container {
+
+    width: 100%;
+    height: 100vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /*
+       This makes scrolling snap
+       to each section.
+    */
+    scroll-snap-type: y mandatory;
+
+    /*
+       Smooth scrolling between sections.
+    */
+    scroll-behavior: smooth;
+
+    /*
+       Prevents weird overscroll behavior.
+    */
+    overscroll-behavior-y: contain;
+}
+
+
+/* =========================================
+   EACH PAGE
+========================================= */
+
+.page-section {
+
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    /*
+       Every section takes exactly
+       one viewport.
+    */
+    min-height: 100vh;
+
+    /*
+       Snap to this section.
+    */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    /*
+       Fade / movement animation.
+    */
+    opacity: 0.35;
+
+    transform: scale(0.98) translateY(20px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+
+    /*
+       Important for the animation.
+    */
+    will-change: opacity, transform;
+
+    /*
+       Keeps the section's contents
+       inside its viewport.
+    */
+    overflow: hidden;
+}
+
+
+/* =========================================
+   ACTIVE PAGE
+========================================= */
+
+.page-section.active {
+
+    opacity: 1;
+
+    transform: scale(1) translateY(0);
+
+}
+
+
+/* =========================================
+   OPTIONAL:
+   Make the section content fill
+   the entire screen
+========================================= */
+
+.page-section > * {
+
+    width: 100%;
+    height: 98%;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .page-container {
+        scroll-snap-type: y mandatory;
+    }
+
+    .page-section {
+        height: 100svh;
+        min-height: 100svh;
+
+        /*
+           Slightly less movement on mobile.
+        */
+        transform: scale(0.99) translateY(12px);
+
+        transition:
+            opacity 0.5s ease,
+            transform 0.5s ease;
+    }
+
+    .page-section.active {
+        transform: scale(1) translateY(0);
+    }
+}

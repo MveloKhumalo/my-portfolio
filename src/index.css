@@ -1,3 +1,97 @@
+/* =========================================
+   COLOR VARIABLES
+========================================= */
+
+:root {
+
+    /* =========================
+       COLOR PALETTE
+    ========================= */
+
+    --black: #0B0D10;
+    --dark-grey: #171A1F;
+    --grey: #6B7280;
+    --light-grey: #D1D5DB;
+    --blue: #3B82F6;
+
+
+    /* =========================
+       DESIGN COLORS
+    ========================= */
+
+    --background: var(--black);
+    --surface: var(--dark-grey);
+
+    --text-primary: var(--light-grey);
+    --text-secondary: var(--grey);
+
+    --accent: var(--blue);
+}
+
+
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   HTML
+========================================= */
+
 html {
-  scroll-behavior: smooth;
+    background: var(--background);
+
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background: var(--background);
+
+    font-family: "Inter", sans-serif;
+
+    /* Page entrance animation */
+    animation: pageLoad 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+
+/* =========================================
+   PAGE LOAD ANIMATION
+========================================= */
+
+@keyframes pageLoad {
+
+    from {
+        opacity: 0;
+        transform: translateY(70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    body {
+        animation: none;
+    }
+
 }
